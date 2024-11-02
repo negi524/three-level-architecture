@@ -1,8 +1,16 @@
 services:
-  be:
+  fe:
+    container_name: fe
     build:
-      context: ./apps/be
+      context: ./apps/fe
       dockerfile: Dockerfile
-    image: nestjs-be-api:latest
+    image: remix-fe-web:latest
     ports:
-      - 3000:3000
+      - "5173:5173"
+  # be:
+  #   build:
+  #     context: ./apps/be
+  #     dockerfile: Dockerfile
+  #   image: nestjs-be-api:latest
+  #   ports:
+  #     - 3000:3000
