@@ -1,0 +1,18 @@
+{
+  "folders": [
+    {
+      // FE source code
+      "name": "FE",
+      "path": "apps/fe"
+    },
+    {
+      // BE source code
+      "name": "BE",
+      "path": "apps/be"
+    },
+    {
+      "name": "DB",
+      "path": "apps/db"
+    }
+  ]
+}
