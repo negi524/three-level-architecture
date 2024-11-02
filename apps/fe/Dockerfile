@@ -1,17 +1,39 @@
 # Use the official Node.js image as the base image
-FROM node:23
+FROM node:23 AS development
 
 # Set the working directory inside the container
 WORKDIR /usr/src/app
 
 # Copy the application files
-COPY . .
+COPY package.json yarn.lock .yarnrc.yml ./
 
 # Install the application dependencies
 RUN corepack enable && yarn install --immutable
+
+COPY . .
 
 # Expose the application port
 EXPOSE 3010
 
 # Command to run the application
 CMD ["yarn", "run", "dev"]
+
+
+FROM node:23 AS prod-builder
+# Set the working directory inside the container
+WORKDIR /usr/src/app
+
+COPY . .
+
+# Install the application dependencies
+RUN corepack enable && \
+  yarn install --immutable && \
+  yarn run build
+
+FROM node:23 AS production
+
+WORKDIR /usr/src/app
+
+COPY --from=prod-builder /usr/src/app/build .
+
+CMD ["yarn", "run", "prod"]
