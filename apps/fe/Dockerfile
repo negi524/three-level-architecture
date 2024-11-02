@@ -11,7 +11,7 @@ COPY . .
 RUN corepack enable && yarn install --immutable
 
 # Expose the application port
-EXPOSE 5173
+EXPOSE 3000
 
 # Command to run the application
 CMD ["yarn", "run", "dev"]
