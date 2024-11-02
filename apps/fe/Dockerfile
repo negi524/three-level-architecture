@@ -1,5 +1,5 @@
 # Use the official Node.js image as the base image
-FROM node:20
+FROM node:23
 
 # Set the working directory inside the container
 WORKDIR /usr/src/app
@@ -11,7 +11,7 @@ COPY . .
 RUN corepack enable && yarn install --immutable
 
 # Expose the application port
-EXPOSE 3000
+EXPOSE 3010
 
 # Command to run the application
 CMD ["yarn", "run", "dev"]

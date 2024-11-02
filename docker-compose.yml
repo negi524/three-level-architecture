@@ -6,8 +6,7 @@ services:
       dockerfile: Dockerfile
     image: remix-fe-web:latest
     ports:
-      # - "5173:5173"
-      - "3000:3000"
+      - "3010:3010"
   # be:
   #   build:
   #     context: ./apps/be
