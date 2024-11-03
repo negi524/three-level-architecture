@@ -1,6 +1,10 @@
 {
   "folders": [
     {
+      "name": "META",
+      "path": "."
+    },
+    {
       // FE source code
       "name": "FE",
       "path": "apps/fe"
