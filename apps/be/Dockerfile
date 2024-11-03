@@ -20,7 +20,7 @@ EXPOSE 3020
 CMD ["yarn", "run", "start:dev"]
 
 # Use the official Node.js image as the base image
-FROM node:23 AS production
+FROM node:23-slim AS production
 
 # Set the working directory inside the container
 WORKDIR /usr/workspace
@@ -29,10 +29,10 @@ WORKDIR /usr/workspace
 COPY . .
 
 # Install the application dependencies
-RUN corepack enable && yarn install --immutable
-
 # Build the NestJS application
-RUN yarn run build
+RUN corepack enable && \
+  yarn install --immutable && \
+  yarn run build
 
 # Expose the application port
 EXPOSE 3020
