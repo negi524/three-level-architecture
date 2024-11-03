@@ -18,13 +18,14 @@ services:
         - action: rebuild
           path: ./apps/fe/package.json
   be:
+    container_name: be
     build:
       context: ./apps/be
       dockerfile: Dockerfile
       target: development
     image: nestjs-be-api:latest
     ports:
-      - 3020:3020
+      - "3020:3020"
     develop:
       watch:
         - action: sync

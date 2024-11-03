@@ -13,11 +13,29 @@ RUN corepack enable && yarn install --immutable
 # Copy the rest of the application files
 COPY . .
 
-# # Build the NestJS application
-# RUN yarn run build
-
 # Expose the application port
 EXPOSE 3020
 
 # Command to run the application
 CMD ["yarn", "run", "start:dev"]
+
+# Use the official Node.js image as the base image
+FROM node:23 AS production
+
+# Set the working directory inside the container
+WORKDIR /usr/workspace
+
+# Copy the rest of the application files
+COPY . .
+
+# Install the application dependencies
+RUN corepack enable && yarn install --immutable
+
+# Build the NestJS application
+RUN yarn run build
+
+# Expose the application port
+EXPOSE 3020
+
+# Command to run the application
+CMD ["yarn", "run", "start:prod"]
