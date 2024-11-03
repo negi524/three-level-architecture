@@ -1,23 +1,23 @@
 # Use the official Node.js image as the base image
-FROM node:23
+FROM node:23 AS development
 
 # Set the working directory inside the container
-WORKDIR /usr/src/app
+WORKDIR /usr/workspace
 
-# Copy package.json and package-lock.json to the working directory
-COPY package*.json ./
+# Copy package.json and yarn.lock to the working directory
+COPY package.json yarn.lock .yarnrc.yml ./
 
 # Install the application dependencies
-RUN yarn install
+RUN corepack enable && yarn install --immutable
 
 # Copy the rest of the application files
 COPY . .
 
-# Build the NestJS application
-RUN yarn run build
+# # Build the NestJS application
+# RUN yarn run build
 
 # Expose the application port
-EXPOSE 3000
+EXPOSE 3020
 
 # Command to run the application
-CMD ["yarn", "run", "start:prod"]
+CMD ["yarn", "run", "start:dev"]
