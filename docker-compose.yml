@@ -4,7 +4,7 @@ services:
     build:
       context: ./apps/fe
       dockerfile: Dockerfile
-      target: development
+      target: production
     image: remix-fe-web:latest
     ports:
       - "3010:3010"

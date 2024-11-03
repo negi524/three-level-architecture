@@ -38,4 +38,7 @@ WORKDIR /usr/src
 
 COPY --from=prod-builder /usr/src/build .
 
+# Expose the application port
+EXPOSE 3010
+
 CMD ["yarn", "run", "prod"]
