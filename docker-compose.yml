@@ -8,6 +8,15 @@ services:
     image: remix-fe-web:latest
     ports:
       - "3010:3010"
+    develop:
+      watch:
+        - action: sync
+          path: ./apps/fe/app # ホストマシンのディレクトリ
+          target: /usr/src/app # コンテナのディレクトリ
+          ignore:
+            - node_modules/
+        - action: rebuild
+          path: ./apps/fe/package.json
   # be:
   #   build:
   #     context: ./apps/be

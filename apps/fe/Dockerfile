@@ -4,6 +4,8 @@ FROM node:23 AS development
 # Set the working directory inside the container
 WORKDIR /usr/src
 
+RUN apt-get update && apt-get install -y vim
+
 # Copy the application files
 COPY package.json yarn.lock .yarnrc.yml ./
 
