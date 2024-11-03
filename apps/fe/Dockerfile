@@ -2,7 +2,7 @@
 FROM node:23 AS development
 
 # Set the working directory inside the container
-WORKDIR /usr/src/app
+WORKDIR /usr/src
 
 # Copy the application files
 COPY package.json yarn.lock .yarnrc.yml ./
@@ -21,7 +21,7 @@ CMD ["yarn", "run", "dev"]
 
 FROM node:23 AS prod-builder
 # Set the working directory inside the container
-WORKDIR /usr/src/app
+WORKDIR /usr/src
 
 COPY . .
 
@@ -32,8 +32,8 @@ RUN corepack enable && \
 
 FROM node:23 AS production
 
-WORKDIR /usr/src/app
+WORKDIR /usr/src
 
-COPY --from=prod-builder /usr/src/app/build .
+COPY --from=prod-builder /usr/src/build .
 
 CMD ["yarn", "run", "prod"]
