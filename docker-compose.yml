@@ -35,3 +35,13 @@ services:
             - node_modules/
         - action: rebuild
           path: ./apps/be/package.json
+  db:
+    container_name: db
+    image: mysql:9.1.0
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=Password!
+      - MYSQL_DATABASE=sample
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=Password!
