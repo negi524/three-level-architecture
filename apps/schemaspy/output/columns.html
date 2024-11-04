@@ -125,32 +125,18 @@
         "comments": "<p>従業員ID<\/p>"
     },
     {
-        "tableName": "skill",
-        "tableFileName": "skill",
-        "tableType": "Table",
-        "keyClass": "foreignKey",
-        "keyTitle": "Foreign Key",
-        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>employee_id",
-        "type": "INT",
-        "length": 10,
-        "nullable": "",
-        "autoUpdated": "",
-        "defaultValue": "null",
-        "comments": "<p>従業員ID<\/p>"
-    },
-    {
-        "tableName": "skill",
-        "tableFileName": "skill",
+        "tableName": "employee",
+        "tableFileName": "employee",
         "tableType": "Table",
         "keyClass": "",
         "keyTitle": "",
-        "name": "language",
-        "type": "VARCHAR",
-        "length": 40,
+        "name": "created_at",
+        "type": "DATETIME",
+        "length": 19,
         "nullable": "",
         "autoUpdated": "",
-        "defaultValue": "null",
-        "comments": "<p>プログラミング言語<\/p>"
+        "defaultValue": "CURRENT_TIMESTAMP",
+        "comments": "<p>レコード作成日時<\/p>"
     },
     {
         "tableName": "employee",
@@ -165,6 +151,20 @@
         "autoUpdated": "",
         "defaultValue": "CURRENT_TIMESTAMP",
         "comments": "<p>レコード更新日時<\/p>"
+    },
+    {
+        "tableName": "skill",
+        "tableFileName": "skill",
+        "tableType": "Table",
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>employee_id",
+        "type": "INT",
+        "length": 10,
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": "<p>従業員ID<\/p>"
     },
     {
         "tableName": "skill",
@@ -195,18 +195,18 @@
         "comments": "<p>従業員名<\/p>"
     },
     {
-        "tableName": "employee",
-        "tableFileName": "employee",
+        "tableName": "skill",
+        "tableFileName": "skill",
         "tableType": "Table",
         "keyClass": "",
         "keyTitle": "",
-        "name": "created_at",
-        "type": "DATETIME",
-        "length": 19,
+        "name": "language",
+        "type": "VARCHAR",
+        "length": 40,
         "nullable": "",
         "autoUpdated": "",
-        "defaultValue": "CURRENT_TIMESTAMP",
-        "comments": "<p>レコード作成日時<\/p>"
+        "defaultValue": "null",
+        "comments": "<p>プログラミング言語<\/p>"
     }
 ];
                     var config = {

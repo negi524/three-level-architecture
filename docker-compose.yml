@@ -62,7 +62,6 @@ services:
       dockerfile: Dockerfile
     platform: linux/amd64
     volumes:
-      - ./apps/schemaspy/schemaspy.properties:/schemaspy.properties
       - ./apps/schemaspy/output:/output
     depends_on:
       - db
