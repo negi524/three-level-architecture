@@ -111,18 +111,46 @@
                 <script>
                     var tableData = [
     {
-        "tableName": "employee",
-        "tableFileName": "employee",
+        "tableName": "skill",
+        "tableFileName": "skill",
         "tableType": "Table",
-        "keyClass": "primaryKey",
-        "keyTitle": "Primary Key",
-        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id",
-        "type": "INT",
-        "length": 10,
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "language",
+        "type": "VARCHAR",
+        "length": 40,
         "nullable": "",
         "autoUpdated": "",
         "defaultValue": "null",
-        "comments": "<p>従業員ID<\/p>"
+        "comments": "<p>プログラミング言語<\/p>"
+    },
+    {
+        "tableName": "employee",
+        "tableFileName": "employee",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "name",
+        "type": "VARCHAR",
+        "length": 40,
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "null",
+        "comments": "<p>従業員名<\/p>"
+    },
+    {
+        "tableName": "employee",
+        "tableFileName": "employee",
+        "tableType": "Table",
+        "keyClass": "",
+        "keyTitle": "",
+        "name": "updated_at",
+        "type": "DATETIME",
+        "length": 19,
+        "nullable": "",
+        "autoUpdated": "",
+        "defaultValue": "CURRENT_TIMESTAMP",
+        "comments": "<p>レコード更新日時<\/p>"
     },
     {
         "tableName": "employee",
@@ -142,23 +170,9 @@
         "tableName": "employee",
         "tableFileName": "employee",
         "tableType": "Table",
-        "keyClass": "",
-        "keyTitle": "",
-        "name": "updated_at",
-        "type": "DATETIME",
-        "length": 19,
-        "nullable": "",
-        "autoUpdated": "",
-        "defaultValue": "CURRENT_TIMESTAMP",
-        "comments": "<p>レコード更新日時<\/p>"
-    },
-    {
-        "tableName": "skill",
-        "tableFileName": "skill",
-        "tableType": "Table",
-        "keyClass": "foreignKey",
-        "keyTitle": "Foreign Key",
-        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>employee_id",
+        "keyClass": "primaryKey",
+        "keyTitle": "Primary Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>id",
         "type": "INT",
         "length": 10,
         "nullable": "",
@@ -181,32 +195,18 @@
         "comments": "<p>スキルID<\/p>"
     },
     {
-        "tableName": "employee",
-        "tableFileName": "employee",
-        "tableType": "Table",
-        "keyClass": "",
-        "keyTitle": "",
-        "name": "name",
-        "type": "VARCHAR",
-        "length": 40,
-        "nullable": "",
-        "autoUpdated": "",
-        "defaultValue": "null",
-        "comments": "<p>従業員名<\/p>"
-    },
-    {
         "tableName": "skill",
         "tableFileName": "skill",
         "tableType": "Table",
-        "keyClass": "",
-        "keyTitle": "",
-        "name": "language",
-        "type": "VARCHAR",
-        "length": 40,
+        "keyClass": "foreignKey",
+        "keyTitle": "Foreign Key",
+        "name": "<i class='icon ion-key iconkey' style='padding-left: 5px;'><\/i>employee_id",
+        "type": "INT",
+        "length": 10,
         "nullable": "",
         "autoUpdated": "",
         "defaultValue": "null",
-        "comments": "<p>プログラミング言語<\/p>"
+        "comments": "<p>従業員ID<\/p>"
     }
 ];
                     var config = {

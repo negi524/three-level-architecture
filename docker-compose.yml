@@ -64,17 +64,5 @@ services:
       - MYSQL_USER=user
       - MYSQL_PASSWORD=Password!
 
-  schemaspy:
-    container_name: schemaspy
-    build:
-      context: ./apps/schemaspy
-      dockerfile: Dockerfile
-    platform: linux/amd64 # M1 Macで使うための設定
-    # GitHub Pagesで公開することを想定し、docsディレクトリに出力する
-    volumes:
-      - ./docs:/output
-    depends_on:
-      - db
-
 volumes:
   three-level-architecture-db:
