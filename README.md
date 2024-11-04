@@ -1,7 +1,7 @@
 # three-level-architecture
 3層アーキテクチャのサンプルリポジトリ
 
-## Getting started
+## Getting started (Hot reload)
 
 ```bash
 $ docker compose -f ./docker-compose.yml up -w
@@ -27,7 +27,6 @@ $ docker compose down -v --rmi all
 ## BE
 
 - framework: NestJS
-- port: 3020
 - local access: `http://localhost:3020`
 
 ## DB
@@ -38,6 +37,18 @@ $ docker compose down -v --rmi all
 
 ```bash
 $ mysql -h localhost -u root -p -D sample --protocol=tcp
+Enter password:Password!
+
+mysql>
+
 ```
 
-Password=`Password!`
+## SchemaSpy
+
+MySQLのスキーマ情報を出力し、GitHub Pagesで公開する
+
+ローカル環境で確認したい時
+
+```bash
+$ http-server docs -o
+```
