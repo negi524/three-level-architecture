@@ -8,8 +8,10 @@ services:
     depends_on:
       - be
       - db
+    # ホストマシンから直接アクセスできるように設定
     ports:
       - "3010:3010"
+    # ホットリロードのための設定
     develop:
       watch:
         - action: sync
@@ -19,6 +21,7 @@ services:
             - node_modules/
         - action: rebuild
           path: ./apps/fe/package.json
+
   be:
     container_name: be
     build:
@@ -27,8 +30,10 @@ services:
       target: development
     depends_on:
       - db
+    # ホストマシンから直接アクセスできるように設定
     ports:
       - "3020:3020"
+    # ホットリロードのための設定
     develop:
       watch:
         - action: sync
@@ -38,6 +43,7 @@ services:
             - node_modules/
         - action: rebuild
           path: ./apps/be/package.json
+
   db:
     container_name: db
     build:
@@ -45,9 +51,11 @@ services:
       dockerfile: Dockerfile
       target: development
     expose:
-      - 3306
+      - 3306  # 他コンテナにポートを開放する
+    # ホストマシンから直接アクセスできるように設定
     ports:
       - "3306:3306"
+    # データベースの内容を永続化する
     volumes:
       - three-level-architecture-db:/var/lib/mysql
     environment:
@@ -55,12 +63,14 @@ services:
       - MYSQL_DATABASE=sample
       - MYSQL_USER=user
       - MYSQL_PASSWORD=Password!
+
   schemaspy:
     container_name: schemaspy
     build:
       context: ./apps/schemaspy
       dockerfile: Dockerfile
-    platform: linux/amd64
+    platform: linux/amd64 # M1 Macで使うための設定
+    # GitHub Pagesで公開することを想定し、docsディレクトリに出力する
     volumes:
       - ./docs:/output
     depends_on:
