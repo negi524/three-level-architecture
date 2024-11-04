@@ -6,6 +6,9 @@ services:
       dockerfile: Dockerfile
       target: development
     image: remix-fe-web:latest
+    depends_on:
+      - be
+      - db
     ports:
       - "3010:3010"
     develop:
@@ -24,6 +27,8 @@ services:
       dockerfile: Dockerfile
       target: development
     image: nestjs-be-api:latest
+    depends_on:
+      - db
     ports:
       - "3020:3020"
     develop:
@@ -35,3 +40,21 @@ services:
             - node_modules/
         - action: rebuild
           path: ./apps/be/package.json
+  db:
+    container_name: db
+    build:
+      context: ./apps/db
+      dockerfile: Dockerfile
+      target: development
+    image: mysql-db:latest
+    ports:
+      - "3306:3306"
+    volumes:
+      - three-level-architecture-db:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=Password!
+      - MYSQL_DATABASE=sample
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=Password!
+volumes:
+  three-level-architecture-db:
