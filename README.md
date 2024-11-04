@@ -47,7 +47,13 @@ mysql>
 
 MySQLのスキーマ情報を出力し、GitHub Pagesで公開する
 
-ローカル環境で確認したい時
+## Generate schemaspy
+
+```bash
+$ docker compose -f ./docker-compose-schemaspy.yml up
+```
+
+### ローカル環境で確認したい時
 
 ```bash
 $ http-server docs -o

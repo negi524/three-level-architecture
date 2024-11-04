@@ -1,0 +1,17 @@
+services:
+  schemaspy:
+    container_name: schemaspy
+    build:
+      context: ./apps/schemaspy
+      dockerfile: Dockerfile
+    platform: linux/amd64 # M1 Macで使うための設定
+    # GitHub Pagesで公開することを想定し、docsディレクトリに出力する
+    volumes:
+      - ./docs:/output
+    # docker-compose.ymlで作成したネットワークに接続する
+    networks:
+      - three-level-architecture_default
+
+networks:
+  three-level-architecture_default:
+    external: true
