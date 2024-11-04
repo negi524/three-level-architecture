@@ -6,6 +6,9 @@ services:
       dockerfile: Dockerfile
       target: development
     image: remix-fe-web:latest
+    depends_on:
+      - be
+      - db
     ports:
       - "3010:3010"
     develop:
@@ -24,6 +27,8 @@ services:
       dockerfile: Dockerfile
       target: development
     image: nestjs-be-api:latest
+    depends_on:
+      - db
     ports:
       - "3020:3020"
     develop:
