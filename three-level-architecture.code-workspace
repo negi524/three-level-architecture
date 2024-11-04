@@ -17,6 +17,10 @@
     {
       "name": "DB",
       "path": "apps/db"
+    },
+    {
+      "name": "SchemaSpy",
+      "path": "apps/schemaspy"
     }
   ]
 }
