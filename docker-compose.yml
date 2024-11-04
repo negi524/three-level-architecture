@@ -37,11 +37,19 @@ services:
           path: ./apps/be/package.json
   db:
     container_name: db
-    image: mysql:9.1.0
+    build:
+      context: ./apps/db
+      dockerfile: Dockerfile
+      target: development
+    image: mysql-db:latest
     ports:
       - "3306:3306"
+    volumes:
+      - three-level-architecture-db:/var/lib/myslq
     environment:
       - MYSQL_ROOT_PASSWORD=Password!
       - MYSQL_DATABASE=sample
       - MYSQL_USER=user
       - MYSQL_PASSWORD=Password!
+volumes:
+  three-level-architecture-db:
