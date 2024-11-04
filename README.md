@@ -51,6 +51,7 @@ MySQLのスキーマ情報を出力し、GitHub Pagesで公開する
 
 ```bash
 $ docker compose -f ./docker-compose-schemaspy.yml up
+$ docker compose -f ./docker-compose-schemaspy.yml down -v --rmi all
 ```
 
 ### ローカル環境で確認したい時
