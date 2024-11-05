@@ -1,5 +1,5 @@
 # Use the official Node.js image as the base image
-FROM node:23 AS development
+FROM node:20 AS development
 
 # Set the working directory inside the container
 WORKDIR /usr/workspace
@@ -20,7 +20,7 @@ EXPOSE 3020
 CMD ["yarn", "run", "start:dev"]
 
 # Use the official Node.js image as the base image
-FROM node:23-slim AS production
+FROM node:20-slim AS production
 
 # Set the working directory inside the container
 WORKDIR /usr/workspace
