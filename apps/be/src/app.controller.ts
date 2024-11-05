@@ -1,6 +1,6 @@
 import { Controller, Get } from '@nestjs/common';
 import { AppService } from './app.service';
-import { employee } from '@prisma/client';
+import { Employee } from '@prisma/client';
 
 @Controller()
 export class AppController {
@@ -12,7 +12,7 @@ export class AppController {
   }
 
   @Get('employee')
-  getEmployee(): Promise<employee[]> {
+  getEmployee(): Promise<Employee[]> {
     return this.appService.employee()
   }
 }

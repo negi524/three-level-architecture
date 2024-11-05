@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from './prisma.service';
-import { employee } from '@prisma/client';
+import { Employee } from '@prisma/client';
 
 @Injectable()
 export class AppService {
@@ -10,7 +10,7 @@ export class AppService {
     return 'Hello World!';
   }
 
-  async employee(): Promise<employee[]> {
+  async employee(): Promise<Employee[]> {
     return this.prisma.employee.findMany()
   }
 }
