@@ -29,7 +29,8 @@ services:
       dockerfile: Dockerfile
       target: development
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     # ホストマシンから直接アクセスできるように設定
     ports:
       - "3020:3020"
@@ -37,10 +38,11 @@ services:
     develop:
       watch:
         - action: sync
-          path: ./apps/be/src # ホストマシンのディレクトリ
-          target: /usr/workspace/src # コンテナのディレクトリ
+          path: ./apps/be # ホストマシンのディレクトリ
+          target: /usr/workspace # コンテナのディレクトリ
           ignore:
             - node_modules/
+            - dist/
         - action: rebuild
           path: ./apps/be/package.json
 
@@ -63,6 +65,12 @@ services:
       - MYSQL_DATABASE=sample
       - MYSQL_USER=user
       - MYSQL_PASSWORD=Password!
+    healthcheck:
+      test: "mysqladmin ping -h 127.0.0.1 -u root -pPassword!"
+      interval: 5s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
 
 volumes:
   three-level-architecture-db:
