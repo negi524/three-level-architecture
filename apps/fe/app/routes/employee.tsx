@@ -19,11 +19,26 @@ export default function EmployeePage() {
   return (
     <div>
       <h1>Employee Page</h1>
-      <ul>
-        {employee.map(item => (
-          <li key={item.id}>title: {item.name}</li>
-        ))}
-      </ul>
+      <table className="table-auto border-collapse border border-slate-500">
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>created_at</th>
+            <th>updated_at</th>
+          </tr>
+        </thead>
+        <tbody>
+          {employee.map(item => (
+            <tr key={item.id}>
+              <td>{item.id}</td>
+              <td>{item.name}</td>
+              <td>{item.created_at}</td>
+              <td>{item.updated_at}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   )
 }
