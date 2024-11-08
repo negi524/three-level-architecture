@@ -42,7 +42,6 @@ services:
           target: /usr/workspace # コンテナのディレクトリ
           ignore:
             - node_modules/
-            - dist/
         - action: rebuild
           path: ./apps/be/package.json
 
