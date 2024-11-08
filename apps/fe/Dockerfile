@@ -1,5 +1,5 @@
 # Use the official Node.js image as the base image
-FROM node:23 AS development
+FROM node:20 AS development
 
 # Set the working directory inside the container
 WORKDIR /usr/src
@@ -22,7 +22,7 @@ EXPOSE 3010
 CMD ["yarn", "run", "dev"]
 
 
-FROM node:23-slim AS production
+FROM node:20-slim AS production
 
 WORKDIR /usr/src
 
