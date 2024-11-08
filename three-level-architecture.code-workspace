@@ -22,5 +22,8 @@
       "name": "SchemaSpy",
       "path": "apps/schemaspy"
     }
-  ]
+  ],
+  "settings": {
+    "prettier.configPath": ".prettierrc"
+  }
 }

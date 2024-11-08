@@ -29,6 +29,12 @@ $ docker compose down -v --rmi all
 - framework: NestJS
 - local access: `http://localhost:3020`
 
+### setup
+
+```bash
+$ cp apps/be/.env.sample apps/be/.env
+```
+
 ## DB
 
 - MySQL
