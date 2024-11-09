@@ -5,12 +5,12 @@ services:
       context: ./apps/fe
       dockerfile: Dockerfile
       target: development
-    depends_on:
-      - be
-      - db
     # ホストマシンから直接アクセスできるように設定
     ports:
       - "3010:3010"
+    depends_on:
+      - be
+      - db
     # ホットリロードのための設定
     develop:
       watch:
@@ -28,12 +28,14 @@ services:
       context: ./apps/be
       dockerfile: Dockerfile
       target: development
-    depends_on:
-      db:
-        condition: service_healthy
+    expose:
+      - 3306  # 他コンテナにポートを開放する
     # ホストマシンから直接アクセスできるように設定
     ports:
       - "3020:3020"
+    depends_on:
+      db:
+        condition: service_healthy
     # ホットリロードのための設定
     develop:
       watch:
