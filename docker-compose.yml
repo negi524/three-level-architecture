@@ -71,5 +71,17 @@ services:
       retries: 5
       start_period: 30s
 
+  schemaspy:
+    container_name: schemaspy
+    build:
+      context: ./apps/schemaspy
+      dockerfile: Dockerfile
+    platform: linux/amd64 # M1 Macで使うための設定
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./apps/schemaspy/output:/output:rw
+
 volumes:
   three-level-architecture-db:
