@@ -80,8 +80,23 @@ services:
     depends_on:
       db:
         condition: service_healthy
+    # ホストマシンと同期する
     volumes:
+      - schemaspy-dir:/output
       - ./apps/schemaspy/output:/output:rw
+
+  schemaspy-web:
+    container_name: schemaspy-web
+    image: nginx:latest
+    ports:
+      - "8080:80"
+    volumes:
+      - schemaspy-dir:/user/share/nginx/html
+    # schemaspyが生成されてから起動
+    depends_on:
+      schemaspy:
+        condition: service_completed_successfully
 
 volumes:
   three-level-architecture-db:
+  schemaspy-dir:
