@@ -1,6 +1,3 @@
-SET CHARACTER_SET_CLIENT = utf8mb4;
-SET CHARACTER_SET_CONNECTION = utf8mb4;
-
 USE sample;
 
 INSERT INTO employee (id, name) VALUES (1, "山田");
