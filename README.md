@@ -53,3 +53,18 @@ mysql>
 ## SchemaSpy
 
 - local access: `http://localhost:8080`
+
+
+## 本番環境
+
+### 起動
+
+```bash
+$ docker compose -f ./docker-compose-prod.yml up -d
+```
+
+## クリア
+
+```bash
+$ docker compose -f ./docker-compose-prod.yml down --rmi all
+```
