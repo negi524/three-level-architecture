@@ -83,7 +83,6 @@ services:
     # ホストマシンと同期する
     volumes:
       - schemaspy-dir:/output
-      - ./apps/schemaspy/output:/output:rw
 
   schemaspy-web:
     container_name: schemaspy-web
