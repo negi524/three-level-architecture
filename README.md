@@ -28,6 +28,7 @@ $ docker compose down -v --rmi all
 
 - framework: NestJS
 - local access: `http://localhost:3020`
+- API interface: `http://localhost:3020/api`
 
 ### setup
 
@@ -51,17 +52,4 @@ mysql>
 
 ## SchemaSpy
 
-MySQLのスキーマ情報を出力し、GitHub Pagesで公開する
-
-## Generate schemaspy
-
-```bash
-$ docker compose -f ./docker-compose-schemaspy.yml up
-$ docker compose -f ./docker-compose-schemaspy.yml down -v --rmi all
-```
-
-### ローカル環境で確認したい時
-
-```bash
-$ http-server docs -o
-```
+- local access: `http://localhost:8080`

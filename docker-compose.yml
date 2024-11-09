@@ -71,5 +71,31 @@ services:
       retries: 5
       start_period: 30s
 
+  schemaspy:
+    container_name: schemaspy
+    build:
+      context: ./apps/schemaspy
+      dockerfile: Dockerfile
+    platform: linux/amd64 # M1 Macで使うための設定
+    depends_on:
+      db:
+        condition: service_healthy
+    # nginxと同期する
+    volumes:
+      - schemaspy-dir:/output
+
+  schemaspy-web:
+    container_name: schemaspy-web
+    image: nginx:latest
+    ports:
+      - "8080:80"
+    volumes:
+      - schemaspy-dir:/usr/share/nginx/html
+    # schemaspyが生成されてから起動
+    depends_on:
+      schemaspy:
+        condition: service_completed_successfully
+
 volumes:
   three-level-architecture-db:
+  schemaspy-dir:
