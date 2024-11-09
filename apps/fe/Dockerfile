@@ -1,3 +1,4 @@
+# 開発環境
 # Use the official Node.js image as the base image
 FROM node:20 AS development
 
@@ -22,6 +23,7 @@ EXPOSE 3010
 CMD ["yarn", "run", "dev"]
 
 
+# 本番環境
 FROM node:20-slim AS production
 
 WORKDIR /usr/src

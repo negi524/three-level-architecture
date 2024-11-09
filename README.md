@@ -1,46 +1,50 @@
 # three-level-architecture
 3層アーキテクチャのサンプルリポジトリ
 
-## Getting started (Hot reload)
+## Development
+
+### Command
+
+#### Getting started (Hot reload)
 
 ```bash
 $ docker compose -f ./docker-compose.yml up -w
 ```
 
-## Delete container
+#### Delete containers
 
 ```bash
 $ docker compose down --rmi all
 ```
 
-## Delete container and volumes
+#### Delete containers and volumes
 
 ```bash
 $ docker compose down -v --rmi all
 ```
 
-## FE
+### FE
 
 - framework: Remix
 - local access: `http://localhost:3010`
 
-## BE
+### BE
 
 - framework: NestJS
 - local access: `http://localhost:3020`
 - API interface: `http://localhost:3020/api`
 
-### setup
+#### Setup
 
 ```bash
 $ cp apps/be/.env.sample apps/be/.env
 ```
 
-## DB
+### DB
 
 - MySQL
 
-### Access database
+#### Access database
 
 ```bash
 $ mysql -h localhost -u root -p -D sample --protocol=tcp
@@ -50,6 +54,26 @@ mysql>
 
 ```
 
-## SchemaSpy
+### SchemaSpy
 
 - local access: `http://localhost:8080`
+
+---
+
+## Production
+
+### Getting started
+
+```bash
+$ docker compose -f ./docker-compose-prod.yml up -d
+```
+
+### Delete containers and volumes
+
+```bash
+$ docker compose -f ./docker-compose-prod.yml down --rmi all
+```
+
+```bash
+$ docker compose -f ./docker-compose-prod.yml down -v --rmi all
+```

@@ -1,0 +1,50 @@
+services:
+  fe:
+    container_name: fe
+    build:
+      context: ./apps/fe
+      dockerfile: Dockerfile
+      target: production
+    # ホストマシンから直接アクセスできるように設定
+    ports:
+      - "3010:3010"
+    depends_on:
+      - be
+      - db
+
+  be:
+    container_name: be
+    build:
+      context: ./apps/be
+      dockerfile: Dockerfile
+      target: production
+    expose:
+      - 3020  # 他コンテナにポートを開放する
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    container_name: db
+    build:
+      context: ./apps/db
+      dockerfile: Dockerfile
+      target: production
+    expose:
+      - 3306  # 他コンテナにポートを開放する
+    volumes:
+      - three-level-architecture-db:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=Password!
+      - MYSQL_DATABASE=sample
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=Password!
+    healthcheck:
+      test: "mysqladmin ping -h 127.0.0.1 -u root -pPassword!"
+      interval: 5s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
+
+volumes:
+  three-level-architecture-db:
