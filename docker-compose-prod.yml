@@ -1,16 +1,16 @@
 services:
-  # fe:
-  #   container_name: fe
-  #   build:
-  #     context: ./apps/fe
-  #     dockerfile: Dockerfile
-  #     target: development
-  #   # ホストマシンから直接アクセスできるように設定
-  #   ports:
-  #     - "3010:3010"
-  #   depends_on:
-  #     - be
-  #     - db
+  fe:
+    container_name: fe
+    build:
+      context: ./apps/fe
+      dockerfile: Dockerfile
+      target: production
+    # ホストマシンから直接アクセスできるように設定
+    ports:
+      - "3010:3010"
+    depends_on:
+      - be
+      - db
 
   be:
     container_name: be
