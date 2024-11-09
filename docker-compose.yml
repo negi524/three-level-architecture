@@ -91,7 +91,7 @@ services:
     ports:
       - "8080:80"
     volumes:
-      - schemaspy-dir:/user/share/nginx/html
+      - schemaspy-dir:/usr/share/nginx/html
     # schemaspyが生成されてから起動
     depends_on:
       schemaspy:
