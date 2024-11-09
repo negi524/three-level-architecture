@@ -20,9 +20,6 @@ services:
       target: production
     expose:
       - 3020  # 他コンテナにポートを開放する
-    # ホストマシンから直接アクセスできるように設定
-    # ports:
-    #   - "3020:3020"
     depends_on:
       db:
         condition: service_healthy
@@ -35,9 +32,6 @@ services:
       target: production
     expose:
       - 3306  # 他コンテナにポートを開放する
-    # ports:
-    #   - "3306:3306"
-    # データベースの内容を永続化する
     volumes:
       - three-level-architecture-db:/var/lib/mysql
     environment:
