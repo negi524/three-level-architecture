@@ -1,3 +1,4 @@
+# 開発環境
 # Use the official Node.js image as the base image
 FROM node:20 AS development
 
@@ -19,8 +20,9 @@ EXPOSE 3020
 # Command to run the application
 CMD ["yarn", "run", "start:dev"]
 
+# 本番環境
 # Use the official Node.js image as the base image
-FROM node:20-slim AS production
+FROM node:20 AS production
 
 # Set the working directory inside the container
 WORKDIR /usr/workspace

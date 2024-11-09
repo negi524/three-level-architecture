@@ -1,25 +1,28 @@
 services:
-  fe:
-    container_name: fe
-    build:
-      context: ./apps/fe
-      dockerfile: Dockerfile
-      target: development
-    # ホストマシンから直接アクセスできるように設定
-    ports:
-      - "3010:3010"
-    depends_on:
-      - be
-      - db
+  # fe:
+  #   container_name: fe
+  #   build:
+  #     context: ./apps/fe
+  #     dockerfile: Dockerfile
+  #     target: development
+  #   # ホストマシンから直接アクセスできるように設定
+  #   ports:
+  #     - "3010:3010"
+  #   depends_on:
+  #     - be
+  #     - db
 
   be:
     container_name: be
     build:
       context: ./apps/be
       dockerfile: Dockerfile
-      target: development
+      target: production
     expose:
-      - 3306  # 他コンテナにポートを開放する
+      - 3020  # 他コンテナにポートを開放する
+    # ホストマシンから直接アクセスできるように設定
+    # ports:
+    #   - "3020:3020"
     depends_on:
       db:
         condition: service_healthy
@@ -32,6 +35,8 @@ services:
       target: production
     expose:
       - 3306  # 他コンテナにポートを開放する
+    # ports:
+    #   - "3306:3306"
     # データベースの内容を永続化する
     volumes:
       - three-level-architecture-db:/var/lib/mysql
