@@ -1,9 +1,6 @@
 CREATE SCHEMA IF NOT EXISTS sample;
 USE sample;
 
-SET CHARACTER_SET_CLIENT = utf8mb4;
-SET CHARACTER_SET_CONNECTION = utf8mb4;
-
 -- 従業員テーブルを作成する
 CREATE TABLE IF NOT EXISTS employee
 (
