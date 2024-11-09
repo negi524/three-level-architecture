@@ -80,7 +80,7 @@ services:
     depends_on:
       db:
         condition: service_healthy
-    # ホストマシンと同期する
+    # nginxと同期する
     volumes:
       - schemaspy-dir:/output
 
