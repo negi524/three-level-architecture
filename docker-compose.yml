@@ -36,12 +36,15 @@ services:
     depends_on:
       db:
         condition: service_healthy
+    # Prismaに関するファイル共有
+    volumes:
+      - ./apps/be/prisma:/usr/workspace/prisma
     # ホットリロードのための設定
     develop:
       watch:
         - action: sync
-          path: ./apps/be # ホストマシンのディレクトリ
-          target: /usr/workspace # コンテナのディレクトリ
+          path: ./apps/be/src # ホストマシンのディレクトリ
+          target: /usr/workspace/src # コンテナのディレクトリ
           ignore:
             - node_modules/
         - action: rebuild

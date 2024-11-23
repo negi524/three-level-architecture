@@ -7,6 +7,7 @@ CREATE TABLE IF NOT EXISTS account (
   user_id INT(10) NOT NULL AUTO_INCREMENT comment 'ユーザーID',
   user_name VARCHAR(255) UNIQUE NOT NULL comment 'ユーザー名',
   password_hash VARCHAR(255) NOT NULL comment 'パスワード',
+  salt VARCHAR(100) NOT NULL comment 'パスワード用ソルト',
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL comment 'アカウント作成日時',
   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL comment '更新日時',
   is_active BOOLEAN DEFAULT TRUE NOT NULL comment 'アカウントが有効である',

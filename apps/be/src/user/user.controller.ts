@@ -1,7 +1,8 @@
-import { Controller, HttpStatus, Logger, Post } from '@nestjs/common';
-import { ApiOperation, ApiResponse } from '@nestjs/swagger';
-import User from 'src/user/domain/user';
+import { Body, Controller, Logger, Post } from '@nestjs/common';
+import { ApiCreatedResponse, ApiOperation } from '@nestjs/swagger';
 import { UserService } from './user.service';
+import CreateUserDto from './createUserDto';
+import UserResponseDto from './userResponseDto';
 
 @Controller('users')
 export class UserController {
@@ -9,9 +10,19 @@ export class UserController {
 
   @Post('new')
   @ApiOperation({ summary: 'ユーザー情報を新規作成する' })
-  @ApiResponse({ status: HttpStatus.CREATED, description: 'success' })
-  async createUser(): Promise<User> {
+  @ApiCreatedResponse({
+    description: 'created',
+    type: UserResponseDto,
+  })
+  async createUser(
+    @Body() createUserDto: CreateUserDto,
+  ): Promise<UserResponseDto> {
     Logger.log('createUser');
-    return this.userService.getUser();
+    const user = await this.userService.createUser(
+      createUserDto.name,
+      createUserDto.password,
+    );
+
+    return new UserResponseDto(user);
   }
 }
