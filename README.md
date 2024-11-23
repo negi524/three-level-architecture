@@ -5,23 +5,7 @@
 
 ### Command
 
-#### Getting started (Hot reload)
-
-```bash
-$ docker compose -f ./docker-compose.yml up -w
-```
-
-#### Delete containers
-
-```bash
-$ docker compose down --rmi all
-```
-
-#### Delete containers and volumes
-
-```bash
-$ docker compose down -v --rmi all
-```
+See [Makefile](./Makefile)
 
 ### FE
 
@@ -62,18 +46,4 @@ mysql>
 
 ## Production
 
-### Getting started
-
-```bash
-$ docker compose -f ./docker-compose-prod.yml up -d
-```
-
-### Delete containers and volumes
-
-```bash
-$ docker compose -f ./docker-compose-prod.yml down --rmi all
-```
-
-```bash
-$ docker compose -f ./docker-compose-prod.yml down -v --rmi all
-```
+See [Makefile](./Makefile)
