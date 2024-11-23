@@ -10,6 +10,19 @@ dev-delete-container:
 dev-delete-all:
 	docker compose down -v --rmi all
 
+# Start dev container with schemaspy
+dev-schemaspy: ./apps/be/.env
+	docker compose -f ./docker-compose-schemaspy.yml up -w
+
+# Delete containers
+dev-schemaspy-delete-container:
+	docker compose -f ./docker-compose-schemaspy.yml down --rmi all
+
+# Delete containers and volumes
+dev-schemaspy-delete-all:
+	docker compose -f ./docker-compose-schemaspy.yml down -v --rmi all
+
+
 # Start prod container
 prod:
 	docker compose -f ./docker-compose-prod.yml up -d
