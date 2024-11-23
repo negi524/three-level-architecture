@@ -1,6 +1,14 @@
 CREATE SCHEMA IF NOT EXISTS sample;
 USE sample;
 
+-- アカウントテーブルを作成する
+CREATE TABLE IF NOT EXISTS account
+(
+  id        INT(10) NOT NULL AUTO_INCREMENT comment 'アカウントID',
+  password  VARCHAR(40) NOT NULL comment 'パスワード',
+  PRIMARY KEY(id)
+) comment 'アカウントテーブル'
+
 -- 従業員テーブルを作成する
 CREATE TABLE IF NOT EXISTS employee
 (
