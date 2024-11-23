@@ -1,10 +1,10 @@
 import { Controller, HttpStatus, Post } from '@nestjs/common';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
-import { UserService } from './service/user.service';
-import User from './domain/user';
+import User from 'src/user/domain/user';
+import { UserService } from './user.service';
 
 @Controller('users')
-export class UsersController {
+export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Post('new')
