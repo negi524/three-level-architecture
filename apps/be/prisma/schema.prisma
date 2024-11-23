@@ -39,4 +39,6 @@ model Account {
   createdAt    DateTime @default(now()) @map("created_at") @db.DateTime(0)
   updatedAt    DateTime @default(now()) @map("updated_at") @db.DateTime(0)
   isActive     Boolean  @default(true) @map("is_active")
+
+  @@map("account")
 }

@@ -10,11 +10,16 @@ export class UserService {
   async createUser(userName: string, password: string): Promise<User> {
     const saltOrRounds = await bcryptjs.genSalt();
     const hash = await bcryptjs.hash(password, saltOrRounds);
-    Logger.log({ password });
-    Logger.log({ hash });
-    const isMatch = await bcryptjs.compare(password, hash);
-    Logger.log({ isMatch });
-    const user = new User(1, userName);
+
+    const response = await this.prismaService.account.create({
+      data: {
+        userName: userName,
+        passwordHash: hash,
+        salt: saltOrRounds,
+      },
+    });
+    const user = new User(response.userId, response.userName);
+    Logger.log({ user });
     return new Promise((resolve, reject) => {
       const success = true;
       if (success) {
