@@ -36,16 +36,18 @@ services:
     depends_on:
       db:
         condition: service_healthy
-    # ホットリロードのための設定
-    develop:
-      watch:
-        - action: sync
-          path: ./apps/be # ホストマシンのディレクトリ
-          target: /usr/workspace # コンテナのディレクトリ
-          ignore:
-            - node_modules/
-        - action: rebuild
-          path: ./apps/be/package.json
+    volumes:
+      - ./apps/be:/usr/workspace
+    # # ホットリロードのための設定
+    # develop:
+    #   watch:
+    #     - action: sync
+    #       path: ./apps/be # ホストマシンのディレクトリ
+    #       target: /usr/workspace # コンテナのディレクトリ
+    #       ignore:
+    #         - node_modules/
+    #     - action: rebuild
+    #       path: ./apps/be/package.json
 
   db:
     container_name: db
