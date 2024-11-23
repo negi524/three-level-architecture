@@ -18,10 +18,19 @@ See [Makefile](./Makefile)
 - local access: `http://localhost:3020`
 - API interface: `http://localhost:3020/api`
 
-#### Setup
+
+#### Setup environment file
 
 ```bash
 $ cp apps/be/.env.sample apps/be/.env
+```
+
+#### Setup prisma
+
+```bash
+$ docker compose exec be yarn prisma db pull
+$ docker compose exec be yarn run format:prisma
+$ docker compose exec be yarn prisma generate
 ```
 
 ### DB
