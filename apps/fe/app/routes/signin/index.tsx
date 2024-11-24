@@ -3,9 +3,9 @@ import {
   ActionFunctionArgs,
   LoaderFunction,
   LoaderFunctionArgs,
-} from "@remix-run/node";
-import { Form } from "@remix-run/react";
-import { authenticator } from "~/services/auth.server";
+} from '@remix-run/node';
+import { Form } from '@remix-run/react';
+import { authenticator } from '~/services/auth.server';
 
 /**
  * データの変更などを行うためにサーバー側で実行される関数
@@ -13,9 +13,9 @@ import { authenticator } from "~/services/auth.server";
 export const action: ActionFunction = async ({
   request,
 }: ActionFunctionArgs) => {
-  return await authenticator.authenticate("user-pass", request, {
-    successRedirect: "/mypage",
-    failureRedirect: "/login",
+  return await authenticator.authenticate('user-pass', request, {
+    successRedirect: '/mypage',
+    failureRedirect: '/signin',
   });
 };
 
@@ -26,7 +26,7 @@ export const loader: LoaderFunction = async ({
   request,
 }: LoaderFunctionArgs) => {
   return await authenticator.isAuthenticated(request, {
-    successRedirect: "/mypage",
+    successRedirect: '/mypage',
   });
 };
 

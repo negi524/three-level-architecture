@@ -1,15 +1,19 @@
 import {
   Body,
   Controller,
+  Get,
   HttpCode,
   HttpException,
   HttpStatus,
   Logger,
+  Param,
+  ParseIntPipe,
   Post,
 } from '@nestjs/common';
 import {
   ApiCreatedResponse,
   ApiForbiddenResponse,
+  ApiNotFoundResponse,
   ApiOkResponse,
   ApiOperation,
 } from '@nestjs/swagger';
@@ -24,19 +28,31 @@ import UserName from './domain/userName';
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
+  @Get(':id')
+  @ApiOperation({ summary: 'ユーザー情報を取得する' })
+  @ApiOkResponse({ description: 'success', type: UserResponseDto })
+  @ApiNotFoundResponse({
+    description: 'NotFound',
+    example: { statusCode: 404, message: 'NotFound' },
+  })
+  async getUser(
+    @Param('id', ParseIntPipe) id: number,
+  ): Promise<UserResponseDto> {
+    Logger.log('getUser', { id: id });
+    const user = await this.userService.getUser(id);
+    if (user === null) {
+      throw new HttpException('NotFound', HttpStatus.NOT_FOUND);
+    }
+    return new UserResponseDto(user);
+  }
+
   @Post('signin')
   @ApiOperation({ summary: 'ユーザーのサインインを行う' })
   @HttpCode(200)
-  @ApiOkResponse({
-    description: 'success',
-    type: UserResponseDto,
-  })
+  @ApiOkResponse({ description: 'success', type: UserResponseDto })
   @ApiForbiddenResponse({
-    description: 'forbidden',
-    example: {
-      statusCode: 403,
-      message: 'Forbidden',
-    },
+    description: 'Forbidden',
+    example: { statusCode: 403, message: 'Forbidden' },
   })
   async signin(@Body() signinUserDto: SigninUserDto): Promise<UserResponseDto> {
     Logger.log('signin', { signinUserDto });
@@ -52,10 +68,7 @@ export class UserController {
 
   @Post('create')
   @ApiOperation({ summary: 'ユーザー情報を新規作成する' })
-  @ApiCreatedResponse({
-    description: 'created',
-    type: UserResponseDto,
-  })
+  @ApiCreatedResponse({ description: 'created', type: UserResponseDto })
   async createUser(
     @Body() createUserDto: CreateUserDto,
   ): Promise<UserResponseDto> {

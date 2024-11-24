@@ -1,9 +1,9 @@
-import { Injectable, Logger } from "@nestjs/common";
-import * as bcryptjs from "bcryptjs";
-import { PrismaService } from "src/prisma/prisma.service";
-import User from "src/user/domain/user";
-import UserName from "./domain/userName";
-import { Account } from "@prisma/client";
+import { Injectable, Logger } from '@nestjs/common';
+import * as bcryptjs from 'bcryptjs';
+import { PrismaService } from 'src/prisma/prisma.service';
+import User from 'src/user/domain/user';
+import UserName from './domain/userName';
+import { Account } from '@prisma/client';
 
 /**
  * ユーザー操作
@@ -11,6 +11,24 @@ import { Account } from "@prisma/client";
 @Injectable()
 export class UserService {
   constructor(private prismaService: PrismaService) {}
+
+  /**
+   * ユーザー情報を取得する
+   * @param id ユーザーID
+   * @returns ユーザー情報
+   */
+  async getUser(id: number): Promise<User | null> {
+    const account: Account | null = await this.prismaService.account.findUnique(
+      {
+        where: { userId: id },
+      },
+    );
+    if (account === null) {
+      Logger.error(`ユーザーが見つかりませんでした\tid=${id}`);
+      return null;
+    }
+    return new User(account.userId, account.userName);
+  }
 
   /**
    * ユーザーのサインインを行う
