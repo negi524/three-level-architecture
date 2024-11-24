@@ -3850,6 +3850,7 @@ __metadata:
     react: "npm:^18.2.0"
     react-dom: "npm:^18.2.0"
     remix-auth: "npm:^3.7.0"
+    remix-auth-form: "npm:^1.5.0"
     tailwindcss: "npm:^3.4.4"
     typescript: "npm:^5.1.6"
     vite: "npm:^5.1.0"
@@ -7103,6 +7104,16 @@ __metadata:
     mdast-util-to-hast: "npm:^12.1.0"
     unified: "npm:^10.0.0"
   checksum: 10c0/803e658c9b51a9b53ee2ada42ff82e8e570444bb97c873e0d602c2d8dcb69a774fd22bd6f26643dfd5ab4c181059ea6c9fb9a99a2d7f9665f3f11bef1a1489bd
+  languageName: node
+  linkType: hard
+
+"remix-auth-form@npm:^1.5.0":
+  version: 1.5.0
+  resolution: "remix-auth-form@npm:1.5.0"
+  peerDependencies:
+    "@remix-run/server-runtime": ^1.0.0 || ^2.0.0
+    remix-auth: ^3.6.0
+  checksum: 10c0/6691e7a4015baf239887bc9a8aa9814e348f40476efb8c18591f2abfb4c999f44fc2833af780e89c4f6c50815f8834adbd7cff4cf731dbe78daaf5fedf38ec29
   languageName: node
   linkType: hard
 
