@@ -1,20 +1,20 @@
-import { useLoaderData } from "@remix-run/react";
+import { useLoaderData } from '@remix-run/react';
 
 interface Employee {
-  id: number,
-  name: string
-  created_at: string,
-  updated_at: string
+  id: number;
+  name: string;
+  created_at: string;
+  updated_at: string;
 }
 
 export const loader = async (): Promise<Employee[]> => {
-  const response = await fetch("http://be:3020/employee");
-  const employee = await response.json() as Employee[]
+  const response = await fetch('http://be:3020/employee');
+  const employee = (await response.json()) as Employee[];
   return employee;
 };
 
 export default function EmployeePage() {
-  const employee = useLoaderData() as Employee[]
+  const employee = useLoaderData() as Employee[];
 
   return (
     <div>
@@ -29,7 +29,7 @@ export default function EmployeePage() {
           </tr>
         </thead>
         <tbody>
-          {employee.map(item => (
+          {employee.map((item) => (
             <tr key={item.id}>
               <td>{item.id}</td>
               <td>{item.name}</td>
@@ -40,5 +40,5 @@ export default function EmployeePage() {
         </tbody>
       </table>
     </div>
-  )
+  );
 }
