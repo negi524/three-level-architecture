@@ -24,13 +24,6 @@ import UserName from './domain/userName';
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @Post('signout')
-  @ApiOperation({ summary: 'ユーザーのサインアウトを行う' })
-  async signout() {
-    // TODO: 実装
-    Logger.log('signout');
-  }
-
   @Post('signin')
   @ApiOperation({ summary: 'ユーザーのサインインを行う' })
   @HttpCode(200)
