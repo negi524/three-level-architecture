@@ -1,17 +1,17 @@
-import { Controller, Get, HttpStatus } from '@nestjs/common';
-import { ApiOperation, ApiResponse } from '@nestjs/swagger';
-import { HealthCheck, HealthCheckResult } from '@nestjs/terminus';
+import { Controller, Get, HttpStatus } from "@nestjs/common";
+import { ApiOperation, ApiResponse } from "@nestjs/swagger";
+import { HealthCheck, HealthCheckResult } from "@nestjs/terminus";
 
-@Controller('health')
+@Controller("health")
 export class HealthController {
   constructor() {}
 
   @Get()
   @HealthCheck()
-  @ApiOperation({ summary: 'ヘルスチェックエンドポイント' })
+  @ApiOperation({ summary: "ヘルスチェックエンドポイント" })
   check(): HealthCheckResult {
     return {
-      status: 'ok',
+      status: "ok",
       details: {},
     };
   }
