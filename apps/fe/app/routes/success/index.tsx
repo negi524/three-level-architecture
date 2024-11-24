@@ -3,7 +3,7 @@ export default function SuccessIndex() {
     <>
       <div>ログイン成功しました</div>
       <div>
-        <form action="/logout" method="post">
+        <form action="/signout" method="post">
           <button type="submit">サインアウト</button>
         </form>
       </div>

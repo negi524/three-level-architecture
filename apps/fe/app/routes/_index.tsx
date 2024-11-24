@@ -1,9 +1,9 @@
-import type { MetaFunction } from '@remix-run/node';
+import type { MetaFunction } from "@remix-run/node";
 
 export const meta: MetaFunction = () => {
   return [
-    { title: 'New Remix App' },
-    { name: 'description', content: 'Welcome to Remix!' },
+    { title: "New Remix App" },
+    { name: "description", content: "Welcome to Remix!" },
   ];
 };
 
@@ -53,19 +53,19 @@ export default function Index() {
 
 const resources = [
   {
-    href: '/detail',
-    text: 'Detail',
+    href: "/detail",
+    text: "Detail",
   },
   {
-    href: '/employee',
-    text: 'Employee',
+    href: "/employee",
+    text: "Employee",
   },
   {
-    href: '/signin',
-    text: 'Sign In',
+    href: "/signin",
+    text: "Sign in",
   },
   {
-    href: '/logout',
-    text: 'Logout',
+    href: "/signout",
+    text: "Sign out",
   },
 ];
