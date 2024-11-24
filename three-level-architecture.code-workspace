@@ -24,7 +24,7 @@
     }
   ],
   "settings": {
-    "prettier.configPath": ".prettierrc",
+    "prettier.configPath": ".prettierrc.js",
     "makefile.configureOnOpen": false
   }
 }
