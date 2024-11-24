@@ -1,4 +1,4 @@
-import { Outlet } from "@remix-run/react";
+import { Outlet } from '@remix-run/react';
 
 export default function SigninRoute() {
   return (
@@ -6,5 +6,5 @@ export default function SigninRoute() {
       <h1 className="text-center font-bold text-lg">Sign in</h1>
       <Outlet />
     </main>
-  )
+  );
 }
