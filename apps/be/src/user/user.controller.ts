@@ -58,7 +58,7 @@ export class UserController {
     return new UserResponseDto(user);
   }
 
-  @Post("new")
+  @Post("create")
   @ApiOperation({ summary: "ユーザー情報を新規作成する" })
   @ApiCreatedResponse({
     description: "created",
