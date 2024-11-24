@@ -1,4 +1,4 @@
-import { useLoaderData } from "@remix-run/react";
+import { useLoaderData } from '@remix-run/react';
 
 interface Employee {
   id: number;
@@ -8,7 +8,7 @@ interface Employee {
 }
 
 export const loader = async (): Promise<Employee[]> => {
-  const response = await fetch("http://be:3020/employee");
+  const response = await fetch('http://be:3020/employee');
   const employee = (await response.json()) as Employee[];
   return employee;
 };
