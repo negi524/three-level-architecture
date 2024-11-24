@@ -1,7 +1,7 @@
-import { Injectable, Logger } from "@nestjs/common";
-import * as bcryptjs from "bcryptjs";
-import { PrismaService } from "src/prisma/prisma.service";
-import User from "src/user/domain/user";
+import { Injectable, Logger } from '@nestjs/common';
+import * as bcryptjs from 'bcryptjs';
+import { PrismaService } from 'src/prisma/prisma.service';
+import User from 'src/user/domain/user';
 
 @Injectable()
 export class UserService {
