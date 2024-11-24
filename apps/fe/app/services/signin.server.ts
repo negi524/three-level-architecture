@@ -10,8 +10,6 @@ export async function signin(
   username: string,
   password: string,
 ): Promise<User> {
-  // DBに接続してユーザー情報を取得する処理
-  console.log({ username, password });
   try {
     const response = await fetch('http://be:3020/users/signin', {
       method: 'POST',
