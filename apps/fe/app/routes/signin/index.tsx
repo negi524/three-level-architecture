@@ -3,9 +3,9 @@ import {
   ActionFunctionArgs,
   LoaderFunction,
   LoaderFunctionArgs,
-} from '@remix-run/node';
-import { Form } from '@remix-run/react';
-import { authenticator } from '~/services/auth.server';
+} from "@remix-run/node";
+import { Form } from "@remix-run/react";
+import { authenticator } from "~/services/auth.server";
 
 /**
  * データの変更などを行うためにサーバー側で実行される関数
@@ -13,9 +13,9 @@ import { authenticator } from '~/services/auth.server';
 export const action: ActionFunction = async ({
   request,
 }: ActionFunctionArgs) => {
-  return await authenticator.authenticate('user-pass', request, {
-    successRedirect: '/success',
-    failureRedirect: '/login',
+  return await authenticator.authenticate("user-pass", request, {
+    successRedirect: "/mypage",
+    failureRedirect: "/login",
   });
 };
 
@@ -26,13 +26,14 @@ export const loader: LoaderFunction = async ({
   request,
 }: LoaderFunctionArgs) => {
   return await authenticator.isAuthenticated(request, {
-    successRedirect: '/success',
+    successRedirect: "/mypage",
   });
 };
 
 export default function SigninIndex() {
   return (
     <>
+      <h1 className="text-center font-bold text-lg p-9">Sign in</h1>
       <div className="w-full max-w-xs mx-auto my-0">
         <Form
           method="post"

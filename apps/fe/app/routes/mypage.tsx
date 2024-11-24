@@ -1,6 +1,6 @@
 import { Outlet } from "@remix-run/react";
 
-export default function SigninRoute() {
+export default function MypageRoute() {
   return (
     <main>
       <Outlet />
