@@ -1,7 +1,7 @@
 import {
   Body,
   Controller,
-  ForbiddenException,
+  HttpCode,
   HttpException,
   HttpStatus,
   Logger,
@@ -9,7 +9,6 @@ import {
 } from '@nestjs/common';
 import {
   ApiCreatedResponse,
-  ApiExpectationFailedResponse,
   ApiForbiddenResponse,
   ApiOkResponse,
   ApiOperation,
@@ -20,7 +19,6 @@ import UserResponseDto from './userResponseDto';
 import SigninUserDto from './signinUserDto';
 import User from './domain/user';
 import UserName from './domain/userName';
-import { PassThrough } from 'stream';
 
 @Controller('users')
 export class UserController {
@@ -35,6 +33,7 @@ export class UserController {
 
   @Post('signin')
   @ApiOperation({ summary: 'ユーザーのサインインを行う' })
+  @HttpCode(200)
   @ApiOkResponse({
     description: 'success',
     type: UserResponseDto,
