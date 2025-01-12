@@ -61,6 +61,10 @@ const resources = [
     text: 'Employee',
   },
   {
+    href: '/employeeSearch',
+    text: 'Search Employee',
+  },
+  {
     href: '/signin',
     text: 'Sign in',
   },

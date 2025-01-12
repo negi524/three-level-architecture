@@ -3,8 +3,8 @@ import { useLoaderData } from '@remix-run/react';
 interface Employee {
   id: number;
   name: string;
-  created_at: string;
-  updated_at: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export const loader = async (): Promise<Employee[]> => {
@@ -33,8 +33,8 @@ export default function EmployeePage() {
             <tr key={item.id}>
               <td>{item.id}</td>
               <td>{item.name}</td>
-              <td>{item.created_at}</td>
-              <td>{item.updated_at}</td>
+              <td>{item.createdAt}</td>
+              <td>{item.updatedAt}</td>
             </tr>
           ))}
         </tbody>
