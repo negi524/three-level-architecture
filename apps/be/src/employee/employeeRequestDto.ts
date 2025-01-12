@@ -1,5 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger';
 
+/**
+ * 従業員一覧リクエスト時のリクエストパラメータ
+ */
 export default class EmployeeRequestDto {
   @ApiProperty({
     description: '従業員名',
