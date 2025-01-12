@@ -1,4 +1,4 @@
-import { ApiProperty, ApiQuery } from '@nestjs/swagger';
+import { ApiProperty } from '@nestjs/swagger';
 
 /**
  * 従業員一覧リクエスト時のリクエストパラメータ
