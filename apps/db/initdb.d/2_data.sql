@@ -68,7 +68,7 @@ VALUES
 INSERT INTO
   employee (id, name)
 VALUES
-  (9, "永井 達雄");
+  (10, "永井 達雄");
 
 INSERT INTO
   skill (employee_id, language)

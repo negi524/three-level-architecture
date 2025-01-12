@@ -10,7 +10,16 @@ export class AppService {
     return 'Hello World!';
   }
 
-  async employee(): Promise<Employee[]> {
-    return this.prisma.employee.findMany();
+  async searchEmployee(name?: string): Promise<Employee[]> {
+    if (name === undefined) {
+      return this.prisma.employee.findMany();
+    }
+    return this.prisma.employee.findMany({
+      where: {
+        name: {
+          contains: name,
+        },
+      },
+    });
   }
 }

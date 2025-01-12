@@ -1,4 +1,4 @@
-import { Controller, Get, HttpStatus } from '@nestjs/common';
+import { Controller, Get, HttpStatus, Query, Req } from '@nestjs/common';
 import { AppService } from './app.service';
 import { Employee } from '@prisma/client';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
@@ -15,7 +15,7 @@ export class AppController {
   @Get('employee')
   @ApiOperation({ summary: 'Employee情報を取得する' })
   @ApiResponse({ status: HttpStatus.OK, description: 'success' })
-  getEmployee(): Promise<Employee[]> {
-    return this.appService.employee();
+  getEmployee(@Query('name') name: string): Promise<Employee[]> {
+    return this.appService.searchEmployee(name);
   }
 }
