@@ -1,5 +1,6 @@
 import { useLoaderData } from '@remix-run/react';
 import React, { useState } from 'react';
+import { useDebouncedCallback } from 'use-debounce';
 import { Employee } from '~/domain/employee';
 
 export const loader = async (): Promise<Employee[]> => {
@@ -13,6 +14,10 @@ export default function EmployeePage() {
   const [employees, setEmployees] = useState<Employee[]>(firstEmployees);
   const [searchInput, setSearchInput] = useState<string | null>(null);
 
+  /**
+   * 入力欄の変更を検知して検索する
+   * @param event 入力欄の変更
+   */
   const onChangeSearchForm = async (
     event: React.ChangeEvent<HTMLInputElement>,
   ) => {
@@ -24,6 +29,11 @@ export default function EmployeePage() {
     setEmployees(responseEmployees);
   };
 
+  const debouncedOnChangeSearchForm = useDebouncedCallback(
+    onChangeSearchForm,
+    200,
+  );
+
   return (
     <div>
       <h1>Employee Search Page</h1>
@@ -32,7 +42,7 @@ export default function EmployeePage() {
         <input
           type="search"
           id="employee-search"
-          onChange={onChangeSearchForm}
+          onChange={debouncedOnChangeSearchForm}
           className="border"
         />
       </form>
