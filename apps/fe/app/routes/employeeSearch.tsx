@@ -1,12 +1,6 @@
 import { useLoaderData } from '@remix-run/react';
 import React, { useState } from 'react';
-
-interface Employee {
-  id: number;
-  name: string;
-  createdAt: string;
-  updatedAt: string;
-}
+import { Employee } from '~/domain/employee';
 
 export const loader = async (): Promise<Employee[]> => {
   const response = await fetch('http://be:3020/employee');
@@ -23,8 +17,9 @@ export default function EmployeePage() {
     event: React.ChangeEvent<HTMLInputElement>,
   ) => {
     setSearchInput(event.target.value);
-    // TODO: RemixのプロキシAPIにつなぐ
-    const response = await fetch('http://be:3020/employee');
+    const response = await fetch(
+      `/api/searchEmployee?name=${event.target.value}`,
+    );
     const responseEmployees = (await response.json()) as Employee[];
     setEmployees(responseEmployees);
   };
