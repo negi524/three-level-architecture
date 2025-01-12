@@ -1,5 +1,4 @@
 import { useLoaderData } from '@remix-run/react';
-import React, { useState } from 'react';
 
 interface Employee {
   id: number;
@@ -16,25 +15,10 @@ export const loader = async (): Promise<Employee[]> => {
 
 export default function EmployeePage() {
   const employee = useLoaderData() as Employee[];
-  const [searchInput, setSearchInput] = useState<string | null>(null);
-
-  const onChangeSearchForm = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchInput(event.target.value);
-  };
 
   return (
     <div>
       <h1>Employee Page</h1>
-      <form>
-        <label htmlFor="employee-search">従業員検索: </label>
-        <input
-          type="search"
-          id="employee-search"
-          onChange={onChangeSearchForm}
-          className="border"
-        />
-      </form>
-      <p>検索中ワード: {searchInput}</p>
       <table className="table-auto border-collapse border border-slate-500">
         <thead>
           <tr>
