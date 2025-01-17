@@ -15,6 +15,7 @@ import EmployeeRequestDto from './employeeRequestDto';
 import { Employee } from '@prisma/client';
 import { EmployeeService } from './employee.service';
 import * as csv from '@fast-csv/format';
+import { EmployeeCsvDto } from './employeeCsvDto';
 
 /**
  * 従業員用のコントローラー
@@ -35,21 +36,15 @@ export class EmployeeController {
   @ApiOperation({ summary: 'Employee一覧をCSVでダウンロードする' })
   @ApiOkResponse({
     description: 'success',
-    example: 'id,name\nhoge,fuga',
+    type: EmployeeCsvDto,
+    example: 'id,name\n1,佐藤 東子\n2,渡辺 里奈',
   })
   async downloadEmployee(): Promise<StreamableFile> {
-    const employees = this.employeeService.fetchAllEmployee();
-    const rows = [
-      ['a', 'b'],
-      ['a1', 'b1'],
-      ['a2', 'b2'],
-    ];
-    const csvBuffer = await csv.writeToBuffer(rows);
+    const employees = await this.employeeService.fetchAllEmployeeCsv();
+    const csvBuffer = await csv.writeToBuffer(employees, { headers: true });
     return new StreamableFile(csvBuffer, {
       type: 'text/csv',
       disposition: 'attachment; filename="employees.csv"',
-      // If you want to define the Content-Length value to another value instead of file's length:
-      // length: 123,
     });
   }
 }
