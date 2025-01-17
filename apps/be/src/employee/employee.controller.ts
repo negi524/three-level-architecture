@@ -31,7 +31,7 @@ export class EmployeeController {
   }
 
   @Get('download')
-  @ApiProduces('text/csv')
+  @ApiProduces('text/csv; charset=utf-8')
   @ApiOperation({ summary: 'Employee一覧をCSVでダウンロードする' })
   @ApiOkResponse({
     description: 'success',
