@@ -10,6 +10,14 @@ export class EmployeeService {
   constructor(private prisma: PrismaService) {}
 
   /**
+   * 全ての従業員を取得する
+   * @returns 従業員一覧
+   */
+  async fetchAllEmployee(): Promise<Employee[]> {
+    return this.prisma.employee.findMany();
+  }
+
+  /**
    * 従業員を検索する
    * @param name 従業員名
    * @returns 従業員一覧

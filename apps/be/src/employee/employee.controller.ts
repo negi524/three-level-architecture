@@ -1,8 +1,18 @@
-import { Controller, Get, HttpStatus, Query } from '@nestjs/common';
-import { ApiOperation, ApiResponse } from '@nestjs/swagger';
+import {
+  Controller,
+  Get,
+  HttpStatus,
+  Query,
+  Res,
+  StreamableFile,
+} from '@nestjs/common';
+import { ApiOperation, ApiProduces, ApiResponse } from '@nestjs/swagger';
 import EmployeeRequestDto from './employeeRequestDto';
 import { Employee } from '@prisma/client';
 import { EmployeeService } from './employee.service';
+import * as csv from '@fast-csv/format';
+import { createReadStream } from 'fs';
+import { join } from 'path';
 
 /**
  * 従業員用のコントローラー
@@ -19,9 +29,21 @@ export class EmployeeController {
   }
 
   @Get('download')
+  @ApiProduces('text/csv')
   @ApiOperation({ summary: 'Employee一覧をCSVでダウンロードする' })
-  @ApiResponse({ status: HttpStatus.OK, description: 'success' })
-  async downloadEmployee(): Promise<string> {
-    return await 'hoge';
+  async downloadEmployee(): Promise<StreamableFile> {
+    const employees = this.employeeService.fetchAllEmployee();
+    const rows = [
+      ['a', 'b'],
+      ['a1', 'b1'],
+      ['a2', 'b2'],
+    ];
+    const csvBuffer = await csv.writeToBuffer(rows);
+    return new StreamableFile(csvBuffer, {
+      type: 'text/csv',
+      disposition: 'attachment; filename="temp.csv"',
+      // If you want to define the Content-Length value to another value instead of file's length:
+      // length: 123,
+    });
   }
 }
