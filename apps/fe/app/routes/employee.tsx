@@ -39,6 +39,8 @@ export default function EmployeePage() {
           ))}
         </tbody>
       </table>
+      <h2>CSV download</h2>
+      <a href="/api/downloadEmployees">ダウンロード</a>
     </div>
   );
 }
