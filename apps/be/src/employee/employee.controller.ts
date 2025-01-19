@@ -1,6 +1,7 @@
 import {
   Controller,
   Get,
+  Header,
   HttpStatus,
   Query,
   StreamableFile,
@@ -34,6 +35,7 @@ export class EmployeeController {
   @Get('download')
   @ApiProduces('text/csv; charset=utf-8')
   @ApiOperation({ summary: 'Employee一覧をCSVでダウンロードする' })
+  @Header('Cache-Control', 'no-store')
   @ApiOkResponse({
     description: 'success',
     type: EmployeeCsvDto,
