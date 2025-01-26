@@ -5,9 +5,16 @@ import { HealthModule } from './health/health.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { UserModule } from './user/user.module';
 import { EmployeeModule } from './employee/employee.module';
+import { TasksModule } from './task/tasks.module';
 
 @Module({
-  imports: [HealthModule, PrismaModule, UserModule, EmployeeModule],
+  imports: [
+    TasksModule,
+    HealthModule,
+    PrismaModule,
+    UserModule,
+    EmployeeModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
